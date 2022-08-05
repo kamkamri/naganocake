@@ -77,4 +77,7 @@ Rails.application.configure do
   # ホスト設定
   config.hosts.clear
 
+  # 画像リサイズ回避エラー
+  config.active_job.queue_adapter = :inline
+
 end
