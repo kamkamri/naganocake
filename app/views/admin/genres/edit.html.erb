@@ -1,2 +1,21 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<!--Admin::Genres#edit-->
+<div class = "container">
+
+  <div class = "row">
+    <!--画面mdサイズ以上で8/12使用　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col offset-md-1">
+      <h4>ジャンル編集</h4>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col offset-md-1">
+      <%= form_with model:[:admin ,@genre], method: :patch do |f| %>
+        <%= f.label :name, 'ジャンル名', class: "col-sm-4" %>
+        <%= f.text_field :name, autofocus: true, class: "w-100 col-sm-4" %>
+        <%= f.submit "変更を保存", class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
