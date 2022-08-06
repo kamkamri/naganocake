@@ -11,6 +11,19 @@
   </head>
 
   <body>
+    <header>
+      
+      <!--◆顧客側ヘッダー-->
+      <% if customer_signed_in? %>
+      <% else %>
+      <% end %>
+      
+    　<!--◆管理者側ヘッダー-->
+    　<% if adomin_sigined_in? %>
+    　<% else %>
+    　<% end %>
+      
+    </header>
     <%= yield %>
   </body>
 </html>

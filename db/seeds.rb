@@ -9,6 +9,7 @@
 
 # あらかじめデータベースに登録したいデータを記載　adminデータ
 Admin.create!(
-  email: 'admin@co.jp' ,
-  encrypted_password: 'admin'
+  email: 'admin@example.com' ,
+  # encrypted_passwordだとだめ
+  password: 'admin1'
   )
