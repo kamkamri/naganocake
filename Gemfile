@@ -62,3 +62,6 @@ gem 'devise'
 
 # Rspec動作のため
 gem 'net-smtp'
+
+# enumファイル導入
+gem "enum_help"

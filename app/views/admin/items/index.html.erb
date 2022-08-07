@@ -1,2 +1,42 @@
-<h1>Admin::Items#index</h1>
-<p>Find me in app/views/admin/items/index.html.erb</p>
+<!--Admin::Items#index-->
+<div class = "container">
+
+  <div class = "row">
+    <!--画面　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col offset-md-1">
+      <h4>商品一覧</h4>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col offset-md-1">
+      <table class = "table table-hover">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><u><%= link_to item.name,admin_item_path(item.id) %></u></td>
+              <td><%= item.price.to_s(:delimited) %></td>
+              <td><%= item.genre.name %></td>
+              <% if item.is_active == true %>
+                <td>販売中</td>
+              <% else %>
+                <td>販売停止中</td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
