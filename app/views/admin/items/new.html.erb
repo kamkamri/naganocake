@@ -8,33 +8,49 @@
     </div>
   </div>
 
-  <div class = "form-group row">
-    <div class = "col offset-md-1">
-      <%= form_with model:[:admin ,@item], method: :post do |f| %>
-        <%= f.label :item_image, '商品画像' %>
-        <%= f.file_field :item_image, accept: "image/*", class: "col-sm-4" %></br>
 
-        <%= f.label :name, '商品名' %>
-        <%= f.text_field :name, autofocus: true, class: "col-sm-4" %></br>
-
-        <%= f.label :introduction, '商品説明' %>
-        <%= f.text_area :introduction, autofocus: true, class: "col-sm-4" %></br>
-
-        <%= f.label :genre_id, 'ジャンル' %>
-        <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択してください", autofocus: true, class: "col-sm-4" %></br>
-
-        <%= f.label :price, '税抜価格' %>
-        <%= f.text_field :price, autofocus: true, class: "col-sm-4" %>円</br>
-
-        <%= f.label :is_active, '販売ステータス' %>
-        <%= f.radio_button :is_active, :true %>
-        <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block:"} %>
-        <%= f.radio_button :is_active, :false %>
-        <%= f.label :is_active, "販売停止中", {value: :false, style:"display: inline-block:"} %></br>
-
-        <%= f.submit "新規登録", class: 'btn btn-success' %>
-      <% end %>
+  <%= form_with model:[:admin ,@item], method: :post do |f| %>
+    <div class = "form-group row">
+      <%= f.label :item_image, '商品画像', class: "col-form-label col-sm-2" %>
+      <%= f.file_field :item_image, accept: "image/*", class: "col-sm-4 pl-0 " %>
     </div>
-  </div>
+
+    <div class = "form-group row">
+      <%= f.label :name, '商品名', class: "col-form-label col-sm-2" %>
+      <%= f.text_field :name, autofocus: true, class: "col-sm-4" %>
+    </div>
+
+    <div class = "form-group row">
+      <%= f.label :introduction, '商品説明', class: "col-form-label col-sm-2" %>
+      <%= f.text_area :introduction, autofocus: true, class: "col-sm-4" %>
+    </div>
+
+    <div class = "form-group row">
+      <%= f.label :genre_id, 'ジャンル', class: "col-form-label col-sm-2" %>
+      <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択してください", autofocus: true, class: "col-sm-4" %>
+    </div>
+
+    <div class = "form-group row">
+      <%= f.label :price, '税抜価格', class: "col-form-label col-sm-2" %>
+      <%= f.text_field :price, autofocus: true, class: "col-sm-4" %><span class = "d-flex align-items-center">円</span>
+    </div>
+
+    <div class = "form-group row">
+      <%= f.label :is_active, '販売ステータス', class: "col-form-label col-sm-2" %>
+      <div class = "form-check form-check-inline">
+        <%= f.radio_button :is_active, :true, class: "form-check-input" %>
+        <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block:"} %>
+      </div>
+      <div class = "form-check form-check-inline">
+        <%= f.radio_button :is_active, :false, class: "form-check-input" %>
+        <%= f.label :is_active, "販売停止中", {value: :false, style:"display: inline-block:"} %>
+      </div>
+    </div>
+
+    <div class = "form-group row">
+      <%= f.submit "新規登録", class: "btn btn-success ,col offset-md-3" %>
+    </div>
+
+  <% end %>
 
 </div>

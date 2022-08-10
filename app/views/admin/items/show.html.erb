@@ -36,8 +36,17 @@
                    (<%= @item.price.to_s(:delimited)%>)　円
               </td>
             </tr>
+            <tr>
+              <td>販売ステータス</td>
+              <% if @item.is_active == true %>
+                <td>販売中</td>
+              <% else %>
+                <td>販売停止中</td>
+              <% end %>
+            </tr>
         </tbody>
       </table>
+      <%= link_to "編集する",edit_admin_item_path(@item.id), class: 'btn btn-success' %>
     </div>
   </div>
 

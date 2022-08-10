@@ -26,6 +26,20 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+    @genres = Genre.all
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:notice] = "You have updated item successfully."
+      # item#showにリダイレクト
+      redirect_to admin_item_path(@item.id)
+    else
+      @genres = Genre.all
+      render :edit
+    end
   end
 
   def item_params
