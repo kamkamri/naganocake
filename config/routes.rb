@@ -23,13 +23,13 @@ Rails.application.routes.draw do
 
     resources :items, only:[:index, :show]
 
-    namespace :customers do
-      get '/' => '#show'
-      get 'edit' => '#edit'
-      patch '/' => '#update'
-      get 'confirm' => '#confirm'
-      patch 'withdrawal' => '#withdrawal'
-    end
+    # namespace :customers do
+      get 'customers' => 'customers#show'
+      get 'customers/edit' => 'customers#edit'
+      patch 'customers' => 'customers#update'
+      get 'customers/confirm' => 'customers#confirm'
+      patch 'customers/withdrawal' => 'customers#withdrawal'
+    # end
 
     resources :cart_items, only:[:index, :update, :destroy, :create]
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
