@@ -1,2 +1,75 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<!--ublic::Customers#show<-->
+<div class = "container">
+
+  <div class = "row">
+    <!--画面　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col offset-md-1">
+      <h4>マイページ</h4>
+    </div>
+  </div>
+
+  <div class = "row">
+    <!--画面　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col-sm-2">
+      <h4>登録情報</h4>
+    </div>
+    <%= link_to "編集する",  customers_edit_path, class: "btn btn-success col-sm-1" %>
+  </div>
+
+  <div class = "row">
+    <div class = "col">
+      <table class = "table">
+        <tbody>
+            <tr>
+              <td>氏名</td>
+              <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+            </tr>
+
+            <tr>
+              <td>カナ</td>
+              <td><%= @customer.last_name_kana %> <%=@customer.first_name_kana %></td>
+            </tr>
+
+            <tr>
+              <td>郵便番号</td>
+              <td><%= @customer.postal_code %></td>
+            </tr>
+
+            <tr>
+              <td>住所</td>
+              <td><%= @customer.address %></td>
+            </tr>
+
+            <tr>
+              <td>電話番号</td>
+              <td><%= @customer.telephone_number %></td>
+            </tr>
+
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= @customer.email %></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class = "row">
+    <!--画面　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col-sm-2">
+      <h4>配送先</h4>
+    </div>
+    <%= link_to "一覧を見る",  addresses_path, class: "btn btn-primary col-sm-2" %>
+  </div>
+
+
+  <div class = "row">
+    <!--画面　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col-sm-2">
+      <h4>注文履歴</h4>
+    </div>
+    <%= link_to "一覧を見る",  orders_path, class: "btn btn-primary col-sm-2" %>
+  </div>
+
+</div>
