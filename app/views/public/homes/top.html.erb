@@ -1,2 +1,67 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<!--<h1>Public::Homes#top</h1>-->
+<div class = "container">
+  <div class ="row">
+
+    <div class = "col-md-2 offset-1" >
+      <table>
+        <thead>
+          <tr>
+            <th>ジャンル一覧</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre| %>
+            <tr>
+              <td><%= genre.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class = "col-md-8">
+
+      <div class = "row">
+        <div class = "col-md-10 h-25 card text-center">
+          <%= image_tag 'top.jpg', class: "card-img img-fluid" %>
+          <div class = "card-img-overlay">
+            <p class ="card-text">ようこそ、ながのCAKEへ！</br>
+                                  このサイトは、ケーキ販売のECサイトになります。</br>
+                                  会員でない方も、しょうひんの閲覧はできますが、</br>
+                                  購入には会員登録が必要になります。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class ="row">
+        <div class = "col">
+          <h3>新着商品</h3>
+        </div>
+      </div>
+
+        <div class = "card shadw-lg">
+          <div class = "row">
+
+            <% @items.each do |item| %>
+              <div class ="col-md-3 ">
+                <%= link_to item_path(item.id) do %>
+                  <%= image_tag item.get_item_image(300,300),class: "card-img-top  stretched-link" %>
+                <% end %>
+                <div class = "card-body">
+                  <p class= "card-text"><%= item.name %></p>
+                  <p class ="card-text"><%= "¥ #{item.with_tax_price.to_s(:delimited)}" %></p>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+
+        <div class = "row text-right">
+          <%= link_to "全ての商品を見る>", items_path, class: "col" %></u>
+        </div>
+    </div>
+
+  </div>
+</div>
