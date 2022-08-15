@@ -65,3 +65,6 @@ gem 'net-smtp'
 
 # enumファイル導入
 gem "enum_help"
+
+# pryに変更
+gem 'pry-rails'

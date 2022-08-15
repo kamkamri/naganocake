@@ -2,10 +2,23 @@ Rails.application.routes.draw do
 
  # 顧客用デバイス
   # URL /customers/sign_in ...
-  devise_for :customers, skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
+  # devise_for :customers, skip: [:passwords, :registrations], controllers: {
+    # registrations: "public/registrations", only:[:new, :create],
+    # sessions: 'public/sessions'
+  # }
+
+  devise_for :customers, skip: [:passwords,], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+  # devise_scope :customers do
+  #   get 'customers/sign-up' => 'public/registrations#new', as: :new_customer_registration
+  #   post 'customers' => 'public/registrations#create', as: :customer_registration
+
+  # end
+
+
 
   # 管理者用デバイス
   # URL /admin/sign_in ...
@@ -23,13 +36,11 @@ Rails.application.routes.draw do
 
     resources :items, only:[:index, :show]
 
-    # namespace :customers do
-      get 'customers' => 'customers#show'
-      get 'customers/edit' => 'customers#edit'
-      patch 'customers' => 'customers#update'
+    resource :customers, only:[:show]
+      get 'customers/information/edit' => 'customers#edit'
+      patch 'customers/information' => 'customers#update'
       get 'customers/confirm' => 'customers#confirm'
       patch 'customers/withdrawal' => 'customers#withdrawal'
-    # end
 
     resources :cart_items, only:[:index, :update, :destroy, :create]
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'

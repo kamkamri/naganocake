@@ -1,2 +1,18 @@
-<h1>Public::Customers#confirm</h1>
-<p>Find me in app/views/public/customers/confirm.html.erb</p>
+<!--<h1>Public::Customers#confirm</h1>-->
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col text-center">
+      <h5>本当に退会しますか？</h5>
+      <p>退会すると、会員登録情や</br>
+      これまでの購入履歴が、閲覧できなくなります。</br>
+      退会する場合は、　「退会する」　をクリックしてください。</p>
+
+      <%= link_to "退会しない", customers_path, class: "btn btn btn-primary mr-2" %>
+      <%= link_to "退会する", customers_withdrawal_path, method: :patch, class: "btn btn btn-danger" %>
+
+    </div>
+
+
+  </div>
+</div>
