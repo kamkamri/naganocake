@@ -35,12 +35,8 @@ class Public::AddressesController < ApplicationController
 
 def destroy
     @address = Address.find(params[:id])
-    if @address.customer != current_customer
-      redirect_to addresses_path
-    else
-      @address.destroy
-      redirect_to addresses_path
-    end
+    @address.destroy
+    redirect_to addresses_path
   end
 
 

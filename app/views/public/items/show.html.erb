@@ -31,10 +31,13 @@
           <p><%= @item.introduction %></p>
           <p><%= "¥ #{@item.with_tax_price.to_s(:delimited)}　(税込)" %></p>
 
-          <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-            <%= f.hidden_field :item_id, :value => @item.id %>
-            <%= f.select :amount, *[1..10] %>
-            <%= f.submit "カートに入れる", class: "btn btn-success " %>
+          <!--ログインしている場合のみ表示-->
+          <% if customer_signed_in? %>
+            <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.select :amount, *[1..10] %>
+              <%= f.submit "カートに入れる", class: "btn btn-success " %>
+            <% end %>
           <% end %>
         </div>
 
