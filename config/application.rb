@@ -23,5 +23,8 @@ module Naganocake
       html_tag
     end
 
+  # enum日本語化
+  config.i18n.default_locale = :ja
+
   end
 end

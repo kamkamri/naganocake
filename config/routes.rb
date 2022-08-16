@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  # ◆ルーティングのポイント
+  # 1 resourceか、resourceで、基本書く
+  # 2 自分で記述するものは、collection doか、member do で、resourceにくっつけて書く
+  # 3 やむなく、自分で記述する場合は、同じコントローラーを使用するresourseより、前に書く
+
  # 顧客用デバイス
   # URL /customers/sign_in ...
   # devise_for :customers, skip: [:passwords, :registrations], controllers: {
@@ -42,12 +47,26 @@ Rails.application.routes.draw do
       get 'customers/confirm' => 'customers#confirm'
       patch 'customers/withdrawal' => 'customers#withdrawal'
 
+    #◆次回は、collection doで、書く方がいい
+    # resource :customers, only:[:show] do
+    #   collection do
+    #     get 'information/edit', action: 'edit'    #’’クォーテーションで囲む場合、:で記述する場合、どっちでもOK
+    #     patch :information, action: :update
+    #     get 'confirm'
+    #     patch 'withdrawal'
+    #   end
+    # end
+
     resources :cart_items, only:[:index, :update, :destroy, :create]
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all_cart'
 
-    resources :orders, only:[:new, :create, :index, :show]
-    post 'orders/confirm'
-    get 'orders/complete'
+    resources :orders, only:[:new, :create, :index, :show] do
+      collection do
+        post 'confirm'
+        get 'complete'
+      end
+    end
+
 
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
   end
