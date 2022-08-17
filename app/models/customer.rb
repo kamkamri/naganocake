@@ -14,4 +14,8 @@ class Customer < ApplicationRecord
     last_name + first_name
   end
 
+  def name_display2
+    last_name + " " + first_name
+  end
+
 end
