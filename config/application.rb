@@ -26,5 +26,11 @@ module Naganocake
   # enum日本語化
   config.i18n.default_locale = :ja
 
+  # タイムゾーンを日本時間に設定
+    config.time_zone = 'Asia/Tokyo'
+    
+   # デフォルトのロケールを日本（ja）に設定
+    config.i18n.default_locale = :ja
+
   end
 end

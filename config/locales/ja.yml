@@ -19,6 +19,12 @@
           waiting: "制作待ち"
           doing: "製作中"
           done: "制作完了"
+
+
+    time:
+      formats:
+        default: "%Y/%m/%d %H:%M:%S"
+        short: "%Y/%m/%d"
 # ja:
 #     enums:
 #       order:

@@ -10,4 +10,10 @@ class Order < ApplicationRecord
     '〒 ' + postal_code + '　' + address
 
   end
+
+  # 商品のみの合計
+  def item_total
+    total_payment - postage
+  end
+
 end

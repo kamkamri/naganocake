@@ -39,7 +39,7 @@
           </tr>
           <tr>
             <th>会員ステータス</th>
-            <td><%= @customer.is_active ? '有効':'退会' %></td>
+            <td><%= @customer.is_active ? '退会':'有効' %></td>
           </tr>
         </tbody>
       </table>
@@ -48,7 +48,11 @@
 
   <div class = "row">
     <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "col-md-1 btn btn-success" %>
-    <%= link_to "注文履歴一覧を見る", admin_root_path, class: "col-md-2 btn btn-primary" %>
+    <%= form_with url: admin_root_path, method: :get do |f| %>
+      <%= f.hidden_field :id, :value => @customer.id %>
+      <%= f.hidden_field :name_display, :value => @customer.name_display %>
+      <%= f.submit "注文履歴一覧を見る", class: "col btn btn-primary" %>
+    <% end %>
   </div>
 
 </div>

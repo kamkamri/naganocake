@@ -24,7 +24,7 @@
               <td><%= customer.id %></td>
               <td><u><%= link_to customer.name_display, admin_customer_path(customer.id) %></u></td>
               <td><%= customer.email %></td>
-              <td><%= customer.is_active ? '有効':'退会' %></td>
+              <td><%= customer.is_active ? '退会':'有効' %></td>
             </tr>
           <% end %>
         </tbody>
