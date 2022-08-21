@@ -1,5 +1,9 @@
 class Public::CartItemsController < ApplicationController
 
+   # admin、customerにログイン前は使えない 先に記載した方のログインページに案内。(cusotomer)
+  before_action :authenticate_customer!
+  # before_action :authenticate_admin!
+
   def index
     @cart_items = current_customer.cart_items.all
     @total = 0
@@ -12,17 +16,23 @@ class Public::CartItemsController < ApplicationController
 
     # 1追加した商品がカート内に存在するかの判別
     if current_customer.cart_items.find_by(item_id: @cart_item.item_id)
-      # カートに同じ商品が既にある場合は、選んだ個数を追加する
-      @re_cart_item = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
-      @re_cart_item.update(amount: @re_cart_item.amount + @cart_item.amount.to_i)
-      redirect_to cart_items_path
 
+      if params[:cart_item][:amount].present?
+        # カートに同じ商品が既にある場合は、選んだ個数を追加する
+        @re_cart_item = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
+        @re_cart_item.update(amount: @re_cart_item.amount + @cart_item.amount.to_i)
+        redirect_to cart_items_path
+      else
+        redirect_to item_path(@cart_item.item_id)
+      end
     #カートに同じ商品が存在しない場合は、カートに追加する
     else
-      @cart_item.save
-      flash[:notice] = "You have created cart_item successfully."
-      # indexにリダイレクト
-      redirect_to cart_items_path
+      if @cart_item.save
+        redirect_to cart_items_path
+      else
+        redirect_to item_path(@cart_item.item_id)
+      end
+
     end
   end
 
@@ -30,7 +40,6 @@ class Public::CartItemsController < ApplicationController
   def update
     @cart_item = current_customer.cart_items.find(params[:id])
     if @cart_item.update(cart_item_params)
-      flash[:notice] = "You have update cart_item successfully."
       # indexにリダイレクト
       redirect_to cart_items_path
     else

@@ -1,6 +1,17 @@
 class Admin::ItemsController < ApplicationController
+
+  # adminにログイン前は使えない
+  before_action :authenticate_admin!
+
+  # 商品一覧ページ
   def index
-    @items = Item.all
+    # True 検索機能あり　False 全部の商品表示
+    if params[:keyword]
+      @items =  Item.where(["name like ?", "%#{params[:keyword]}%"]).order('id DESC').page(params[:page]).per(10)
+      @keyword = params[:keyword]
+    else
+      @items = Item.page(params[:page]).per(10)
+    end
   end
 
   def new

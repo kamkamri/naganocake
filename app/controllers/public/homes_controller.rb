@@ -1,4 +1,6 @@
 class Public::HomesController < ApplicationController
+  
+  # トップページ　商品一覧
   def top
     @genres = Genre.all
     # ステータスが販売中の商品の新着4件を表示

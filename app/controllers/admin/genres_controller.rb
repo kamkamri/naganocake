@@ -1,4 +1,8 @@
 class Admin::GenresController < ApplicationController
+  
+  # adminにログイン前は使えない
+  before_action :authenticate_admin!
+  
   def index
     @genre = Genre.new
     @genres = Genre.all

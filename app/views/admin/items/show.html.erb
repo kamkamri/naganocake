@@ -1,10 +1,9 @@
 <!--Admin::Items#show-->
-<div class = "container">
+<div class = "container-fluid px-5 m-5 px-sm-0">
 
   <div class = "row">
-    <!--画面　mdサイズ以上で、一つ右にずらす-->
-    <div class = "col offset-md-1">
-      <h4>商品詳細</h4>
+    <div class ="col-md-2 offset-1">
+      <h4 class = "mb-3"><span class = "bg-headline px-2">商品詳細</span></h4>
     </div>
   </div>
 
@@ -12,10 +11,10 @@
   <div class = "row">
 
     <div class = "col-4 offset-md-1">
-      <%= image_tag @item.get_item_image(300,300),class: "img-fluid" %>
+      <%= image_tag @item.get_item_image(400,300),class: "img-fluid" %>
     </div>
 
-    <div class = "col offset-md-1">
+    <div class = "col-md-6">
       <table class = "table table-borderless ">
         <tbody>
             <tr>
@@ -32,21 +31,18 @@
             </tr>
             <tr>
               <td>税込価格</br>(税抜価格)</td>
-              <td><%= @item.with_tax_price.to_s(:delimited) %>
-                   (<%= @item.price.to_s(:delimited)%>)　円
+              <td class = "align-bottom"><h5><%= @item.with_tax_price.to_s(:delimited) %>
+                   (<%= @item.price.to_s(:delimited)%>)　円</h5>
               </td>
             </tr>
             <tr>
               <td>販売ステータス</td>
-              <% if @item.is_active == true %>
-                <td>販売中</td>
-              <% else %>
-                <td>販売停止中</td>
-              <% end %>
+              <!--部分テンプレート：販売ステータス-->
+              <%= render 'layouts/sales_status', item: @item %>
             </tr>
         </tbody>
       </table>
-      <%= link_to "編集する",edit_admin_item_path(@item.id), class: 'btn btn-success' %>
+      <div class = "text-center"><%= link_to "　編集する　",edit_admin_item_path(@item.id), class: 'btn btn-success btn-lg' %></div>
     </div>
   </div>
 

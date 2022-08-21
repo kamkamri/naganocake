@@ -1,34 +1,22 @@
 <!--<h1>Public::Homes#top</h1>-->
-<div class = "container">
+<div class = "container-fluid px-5 m-5 px-sm-0">
   <div class ="row">
 
     <div class = "col-md-2 offset-1" >
-      <table>
-        <thead>
-          <tr>
-            <th>ジャンル一覧</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @genres.each do |genre| %>
-            <tr>
-              <td><%= genre.name %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <!--部分テンプレート：ジャンル検索-->
+      <%= render 'layouts/genre_search', genres: @genres %>
     </div>
 
 
     <div class = "col-md-8">
 
       <div class = "row">
-        <div class = "col-md-10 h-25 card text-center">
+        <div class = "col-md-10 h-25 card text-center align-self-center">
           <%= image_tag 'top.jpg', class: "card-img img-fluid" %>
-          <div class = "card-img-overlay">
+          <div class = "card-img-overlay line d-flex align-items-center justify-content-center">
             <p class ="card-text">ようこそ、ながのCAKEへ！</br>
                                   このサイトは、ケーキ販売のECサイトになります。</br>
-                                  会員でない方も、しょうひんの閲覧はできますが、</br>
+                                  会員でない方も、商品の閲覧はできますが、</br>
                                   購入には会員登録が必要になります。</p>
           </div>
         </div>

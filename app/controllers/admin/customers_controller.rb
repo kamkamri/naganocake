@@ -1,6 +1,11 @@
 class Admin::CustomersController < ApplicationController
+  
+  # adminにログイン前は使えない
+  before_action :authenticate_admin!
+  
+  # 会員一覧　ページネーション対応
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page]).per(10)
   end
 
   def show

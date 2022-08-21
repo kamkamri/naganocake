@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
     resources :items, only:[:index, :show]
 
+
     resource :customers, only:[:show]
       get 'customers/information/edit' => 'customers#edit'
       patch 'customers/information' => 'customers#update'

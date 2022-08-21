@@ -26,9 +26,9 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  def after_sign_in_path_for(resource_or_scope)
-    root_path
-  end
+  # def after_sign_in_path_for(resource_or_scope)
+  #   root_path
+  # end
 
   def after_sign_out_path_for(resource_or_scope)
     root_path
@@ -45,7 +45,8 @@ class Public::SessionsController < Devise::SessionsController
     return if !@customer
     # 処理内容2：取得したアカウントのパスワードと入力されたパスワードが一致しているか確認
     if @customer.valid_password?(params[:customer][:password]) && @customer.is_active == true
-      redirect_to new_customer_registration_path
+      # flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+      redirect_to new_customer_registration_path, notice: "Please re-register.(退会済みです。再度ご登録をしてご利用ください。)"
     end
 end
 

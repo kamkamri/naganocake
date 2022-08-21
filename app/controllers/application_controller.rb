@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   # before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
   # resource_or_scope　引数を使用することにより、リダイレクト先を分岐させる
   # def after_sign_in_path_for(resource_or_scope)
   #   # adminが含まれていたら

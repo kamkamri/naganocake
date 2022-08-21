@@ -66,6 +66,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
     customers_path
   end
 
+
+
   protected
 
   def configure_sign_up_params

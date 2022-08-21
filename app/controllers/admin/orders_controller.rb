@@ -1,4 +1,7 @@
 class Admin::OrdersController < ApplicationController
+  
+  # adminにログイン前は使えない
+  before_action :authenticate_admin!
 
   # 注文履歴一覧
   def show

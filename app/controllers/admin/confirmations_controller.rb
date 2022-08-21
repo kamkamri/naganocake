@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::ConfirmationsController < Devise::ConfirmationsController
+  # ログイン前は、このコントローラー使えない
+  
   # GET /resource/confirmation/new
   # def new
   #   super

@@ -1,55 +1,48 @@
 <!--Public::Addresses#index<-->
-<div class = "container">
+<div class = "container-fluid px-5 m-5 px-sm-0">
 
   <div class = "row mb-4">
     <!--画面　mdサイズ以上で、一つ右にずらす-->
-    <div class = "col offset-md-1">
-      <h4>配送先登録/一覧</h4>
+    <div class = "col">
+      <h4 class = "mb-3"><span class = "bg-headline px-2">配送先登録/一覧</span></h4>
     </div>
   </div>
 
 
-  <!--エラー表記-->
-  <% if @address.errors.any? %>
-    <%= @address.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @address.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <!--部分テンプレート：ジャンル検索-->
+  <%= render 'layouts/error_message', model: @address %>
 
 
   <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
 
     <div class = "row mb-2">
-      <%= f.label :postal_code ,"郵便番号(ハイフンなし)", class: "col-sm-2 pr-0"%>
-      <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" , placeholder: "0000000" , class: "col-sm-3 offset-1" %>
+      <%= f.label :postal_code ,"郵便番号(ハイフンなし)", class: "col-md-2 pr-0"%>
+      <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" , placeholder: "0000000" , class: "col-md-2" %>
     </div>
 
     <div class = "row mb-2">
-      <%= f.label :address ,"住所", class: "col-sm-2 pr-0"%>
-      <%= f.text_field :address, autofocus: true, autocomplete: "on" , placeholder: "東京都渋谷区代々木神園0-0" , class: "col-sm-7 offset-1" %>
+      <%= f.label :address ,"住所", class: "col-md-2 pr-0"%>
+      <%= f.text_field :address, autofocus: true, autocomplete: "on" , placeholder: "東京都渋谷区代々木神園0-0" , class: "col-md-5" %>
     </div>
 
-    <div class = "row mb-5">
-      <%= f.label :name ,"宛名", class: "col-sm-2 pr-0"%>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" , placeholder: "令和道子" , class: "col-sm-3 offset-1" %>
-      <%= f.submit "新規登録", class: "btn btn-success col-sm-2 offset-3" %>
+    <div class = "row mb-5 pb-5">
+      <%= f.label :name ,"宛名", class: "col-md-2 pr-0"%>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" , placeholder: "令和道子" , class: "col-md-2" %>
+      <%= f.submit "新規登録", class: "btn btn-success col-md-1 offset-3" %>
     </div>
 
   <% end %>
 
 
   <div class = "row">
-    <div class = "col">
-      <table class = "table">
-        <thead>
+    <div class = "col-md-6">
+      <table class = "table table-bordered">
+        <thead class = "table-active">
           <tr>
             <th>郵便番号</th>
             <th>住所</th>
             <th>宛名</th>
-            <th colspan = "2"></th>
+            <th></th>
           </tr>
         </thead>
 
@@ -59,8 +52,10 @@
               <td><%= address.postal_code %></td>
               <td><%= address.address %></td>
               <td><%= address.name %></td>
-              <td><%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success col" %></td>
-              <td><%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-danger col" %></td>
+              <td class = "text-center">
+                <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
+                <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-danger" %>
+              </td>
             </tr>
           <% end %>
         </tbody>

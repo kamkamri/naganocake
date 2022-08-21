@@ -1,14 +1,17 @@
 <!--<h1>Admin::Customers#show</h1>-->
 
-<div class = "container">
-  <div class = "row">
-    <div class = "col"><%= @customer.name_display %>さんの会員詳細</h4></div>
+<div class = "container-fluid px-5 m-5 px-sm-0">
+
+  <div class = "row mb-4 pb-2 offset-1">
+    <div class ="col">
+      <h4><span class = "bg-headline px-2"><%= @customer.name_display %>さんの会員詳細</span></h4>
+    </div>
   </div>
 
-  <div class = "row">
+  <div class = "row offset-1">
     <div class = "col">
-      <table>
-        <tbody>
+      <table class = "table table-borderless">
+        <thead>
           <tr>
             <th>会員ID</th>
             <td><%= @customer.id %></td>
@@ -39,19 +42,20 @@
           </tr>
           <tr>
             <th>会員ステータス</th>
-            <td><%= @customer.is_active ? '退会':'有効' %></td>
+            <!--部分テンプレート：会員ステータス-->
+            <%= render 'layouts/customer_status', customer: @customer %>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <div class = "row">
-    <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "col-md-1 btn btn-success" %>
+  <div class = "row offset-1">
+    <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success col-md-1 offset-2 btn-lg" %>
     <%= form_with url: admin_root_path, method: :get do |f| %>
       <%= f.hidden_field :id, :value => @customer.id %>
       <%= f.hidden_field :name_display, :value => @customer.name_display %>
-      <%= f.submit "注文履歴一覧を見る", class: "col btn btn-primary" %>
+      <div class = "col-md-2 offset-1"><%= f.submit "　注文履歴一覧を見る　", class: "btn btn-primary btn-lg" %></div>
     <% end %>
   </div>
 

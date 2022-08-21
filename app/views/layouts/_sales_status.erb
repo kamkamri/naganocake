@@ -1,0 +1,8 @@
+<!--部分テンプレート：販売ステータス-->
+<!--admin items#index items#show-->
+
+<% if item.is_active == true %>
+  <td class = "text-success">販売中</td>
+<% else %>
+  <td class = "text-secondary">販売停止中</td>
+<% end %>

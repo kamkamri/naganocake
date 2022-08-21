@@ -1,4 +1,9 @@
 class Public::CustomersController < ApplicationController
+  
+  # admin、customerにログイン前は使えない 先に記載した方のログインページに案内。(cusotomer)
+  before_action :authenticate_customer!
+  # before_action :authenticate_admin!
+  
   def show
     # current_customerで、現在のろぐいんしている人のcustomerモデルの情報と入手できる
     # deviseのモデルのみで使用できる

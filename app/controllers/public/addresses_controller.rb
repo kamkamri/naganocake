@@ -1,4 +1,9 @@
 class Public::AddressesController < ApplicationController
+
+  # admin、customerにログイン前は使えない 先に記載した方のログインページに案内。(cusotomer)
+  before_action :authenticate_customer!
+
+
   def index
     @address = Address.new
     @addresses = current_customer.addresses.all
@@ -7,8 +12,6 @@ class Public::AddressesController < ApplicationController
   def create
     @address = current_customer.addresses.new(address_params)
     if @address.save
-      flash[:notice] = "You have created address successfully."
-      # indexにリダイレクト
       redirect_to addresses_path
     else
       # gnre#index にrender
@@ -24,8 +27,6 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-      flash[:notice] = "You have address item successfully."
-      # item#showにリダイレクト
       redirect_to addresses_path
     else
       @addresses = current_customer.addresses.all

@@ -1,8 +1,18 @@
 class Public::OrdersController < ApplicationController
 
+  # admin、customerにログイン前は使えない 先に記載した方のログインページに案内。(cusotomer)
+  before_action :authenticate_customer!
+  # before_action :authenticate_admin!
+
   #支払方法、配送先入力画面
   def new
-    @order = Order.new
+    if params[:total] == "0"
+      @cart_items = current_customer.cart_items.all
+      @total = 0
+      render  "public/cart_items/index"
+    else
+      @order = Order.new
+    end
   end
 
 

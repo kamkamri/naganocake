@@ -1,23 +1,13 @@
 <!--Public::Items#show-->
 
-<div class = "conatainer">
+<!--部分テンプレ：メッセージ-->
+<%= render 'layouts/message' %>
+
+<div class = "container-fluid px-5 m-5 px-sm-0">
   <div class = "row">
     <div class = "col-md-2 offset-1" >
-      <table>
-        <thead>
-          <tr>
-            <th>ジャンル一覧</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @genres.each do |genre| %>
-            <tr>
-              <td><%= genre.name %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
+      <!--部分テンプレート：ジャンル検索-->
+      <%= render 'layouts/genre_search', genres: @genres %>
     </div>
 
     <div class = "col-md-8">
@@ -27,19 +17,22 @@
         </div>
 
         <div class = "col-md-6 offset-1">
-          <h4><%= @item.name %></h4>
-          <p><%= @item.introduction %></p>
-          <p><%= "¥ #{@item.with_tax_price.to_s(:delimited)}　(税込)" %></p>
+          <h3 class = "pb-2"><strong><%= @item.name %></strong></h3>
+          <p class = "pb-3"><%= @item.introduction %></p>
+          <p class = "inline-block"><strong class = "h4">¥ <%= @item.with_tax_price.to_s(:delimited) %></strong>　(税込)</p>
 
           <!--ログインしている場合のみ表示-->
           <% if customer_signed_in? %>
+
             <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
               <%= f.hidden_field :item_id, :value => @item.id %>
-              <%= f.select :amount, *[1..10] %>
-              <%= f.submit "カートに入れる", class: "btn btn-success " %>
+              <%= f.select :amount, *[1..10], { include_blank: '個数選択'}, class: "form-control w-25 d-inline-block  d-inline-block" %>
+              <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
             <% end %>
+
           <% end %>
         </div>
+
 
       </div>
     </div>

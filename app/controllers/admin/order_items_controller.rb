@@ -1,5 +1,8 @@
 class Admin::OrderItemsController < ApplicationController
 
+  # adminにログイン前は使えない
+  before_action :authenticate_admin!
+
   #制作ステータス変更
   def update
     # @order_itemsは、@order_item 以外のorder_item を格納

@@ -68,3 +68,9 @@ gem "enum_help"
 
 # pryに変更
 gem 'pry-rails'
+
+# ページネーションのため
+gem 'kaminari','~> 1.2.1'
+
+# 検索機能
+gem 'ransack'
