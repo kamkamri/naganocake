@@ -1,0 +1,38 @@
+<!--<h1>Admin::Customers#index</h1>-->
+<div class = "container-fluid px-5 m-5 px-sm-0">
+
+  <div class = "row">
+    <div class ="col-md-2">
+      <h4 class = "mb-3"><span class = "bg-headline px-2">会員一覧</span></h4>
+    </div>
+  </div>
+
+
+  <div class ="row offset-1">
+    <div class = "col-md-10">
+      <table class = "table">
+        <thead class = "table-active">
+          <tr>
+            <td>会員ID</td>
+            <td>氏名</td>
+            <td>メールアドレス</td>
+            <td>ステータス</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td><u><%= link_to customer.name_display, admin_customer_path(customer.id) %></u></td>
+              <td><%= customer.email %></td>
+              <!--部分テンプレート：会員ステータス-->
+              <%= render 'layouts/customer_status', customer: customer %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class = "d-flex justify-content-center"><%= paginate @customers %></div>
+
+</div>

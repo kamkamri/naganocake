@@ -1,0 +1,38 @@
+<!--Admin::Genres#index-->
+<div class = "container-fluid px-5 m-5 px-sm-0">
+
+  <div class = "row mb-4 offset-1">
+    <div class ="col">
+      <h4 class = "mb-3"><span class = "bg-headline px-2">ジャンル一覧・追加</span></h4>
+    </div>
+  </div>
+
+  <div class = "form-grouprow offset-1 mb-5 pb-3">
+    <%= form_with model:[:admin ,@genre], method: :post do |f| %>
+      <%= f.label :name, 'ジャンル名', placeholder: "ジャンル名" , class: "col-form-label col-sm-2" %>
+      <%= f.text_field :name, autofocus: true, class: "col-sm-2" %>
+      <%= f.submit "　新規登録　", class: 'btn btn-success col-sm-1 ml-5' %>
+    <% end %>
+  </div>
+
+  <div class = "row offset-1">
+    <div class = "col-md-4">
+      <table class = "table">
+        <thead class = "table-active">
+          <tr>
+            <th colspan="2">ジャンル</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre| %>
+            <tr>
+              <td><%= genre.name %></td>
+              <td class = "text-right"><%= link_to "編集する",edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

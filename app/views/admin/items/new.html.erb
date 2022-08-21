@@ -1,0 +1,55 @@
+<!--Admin::Items#new-->
+<div class = "container-fluid px-5 m-5 px-sm-0">
+
+  <div class = "row mb-4 offset-1">
+    <div class ="col">
+      <h4 class = "mb-3"><span class = "bg-headline px-2">商品新規登録</span></h4>
+    </div>
+  </div>
+
+
+  <%= form_with model:[:admin ,@item], method: :post do |f| %>
+    <div class = "form-group row offset-2">
+      <%= f.label :item_image, '商品画像', class: "col-form-label col-sm-2" %>
+      <%= f.file_field :item_image, accept: "image/*", class: "col-sm-4 pl-0 " %>
+    </div>
+
+    <div class = "form-group row offset-2">
+      <%= f.label :name, '商品名', class: "col-form-label col-sm-2" %>
+      <%= f.text_field :name, autofocus: true, class: "col-sm-4" %>
+    </div>
+
+    <div class = "form-group row offset-2">
+      <%= f.label :introduction, '商品説明', class: "col-form-label col-sm-2" %>
+      <%= f.text_area :introduction, autofocus: true, class: "col-sm-4 form-control", rows: "8"  %>
+    </div>
+
+    <div class = "form-group row offset-2">
+      <%= f.label :genre_id, 'ジャンル', class: "col-form-label col-sm-2" %>
+      <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択してください", autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class = "form-group row offset-2">
+      <%= f.label :price, '税抜価格', class: "col-form-label col-sm-2" %>
+      <%= f.text_field :price, autofocus: true, class: "col-sm-4" %><span class = "d-flex align-items-center">円</span>
+    </div>
+
+    <div class = "form-group row offset-2">
+      <%= f.label :is_active, '販売ステータス', class: "col-form-label col-sm-2" %>
+      <div class = "form-check form-check-inline">
+        <%= f.radio_button :is_active, :true, class: "form-check-input" %>
+        <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block:"} %>
+      </div>
+      <div class = "form-check form-check-inline">
+        <%= f.radio_button :is_active, :false, class: "form-check-input" %>
+        <%= f.label :is_active, "販売停止中", {value: :false, style:"display: inline-block:"} %>
+      </div>
+    </div>
+
+    <div class = "form-group row offset-3">
+      <%= f.submit "新規登録", class: "btn btn-success ,col offset-md-3 btn-lg" %>
+    </div>
+
+  <% end %>
+
+</div>

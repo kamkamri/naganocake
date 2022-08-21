@@ -1,0 +1,47 @@
+# enumの日本語設定 order.payment_method
+  ja:
+    enums:
+      order:
+        payment_method:
+          credit_card: "クレジットカード"
+          transfer: "銀行振込"
+
+        order_status:
+          waiting: "入金待ち"
+          comfirmed: "入金確認"
+          doing: "製作中"
+          shipping_preparation: "発送準備中"
+          shipped: "発送済み"
+
+      order_item:
+        craft_status:
+          cannot_start: "着手不可"
+          waiting: "制作待ち"
+          doing: "製作中"
+          done: "制作完了"
+
+
+    time:
+      formats:
+        default: "%Y/%m/%d %H:%M:%S"
+        short: "%Y/%m/%d"
+# ja:
+#     enums:
+#       order:
+#         order_status:
+#           waiting: "入金待ち"
+#           confirmed: "入金確認"
+#           doing: "製作中"
+#           shipping_preparation: "発送準備中"
+#           shipped: "発送済み"
+
+
+　# enumの日本語設定 order_item craft_status
+  # ja:
+  #   enums:
+  #     order_item:
+  #       craft_status:
+  #         cannot_start: "着手不可"
+  #         waiting: "制作待ち"
+  #         doing: "製作中"
+  #         done: "制作完了"

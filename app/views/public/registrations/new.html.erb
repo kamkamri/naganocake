@@ -1,0 +1,89 @@
+<!--public::sign_up-->
+
+<!--部分テンプレ：メッセージ-->
+<%= render 'layouts/message' %>
+
+<div class = "container px-5 px-sm-0">
+
+  <div class = "row">
+    <!--画面mdサイズ以上で8/12使用　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col offset-md-1">
+      <h4 class = "mb-3"><span class = "bg-headline">新規会員登録</span></h4>
+    </div>
+  </div>
+
+  <%= form_with model: @customer, url: customer_registration_path, method: :post do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+
+    <div class = "row mb-2">
+      <%= f.label '名前' , class: "col-sm-3" %>
+      <%= f.label :last_name , '(姓)',  class: "col-sm-1 pl-4"%>
+      <%= f.text_field :last_name, autofocus: true, placeholder: "令和" , autocomplete: "family-name", class: "col-sm-3" %>
+
+      <%= f.label :first_name , '(名)',  class: "col-sm-1 pl-4"%>
+      <%= f.text_field :first_name, autofocus: true, placeholder: "道子" , autocomplete: "given-name", class: "col-sm-3" %>
+    </div>
+
+    <div class = "row mb-2">
+      <%= f.label 'フリガナ' , class: "col-sm-3" %>
+      <%= f.label :last_name_kana , '(セイ)',  class: "col-sm-1 pl-4"%>
+      <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ" , autocomplete: "on" , class: "col-sm-3" %>
+
+      <%= f.label :first_name_kana , '(メイ)',  class: "col-sm-1 pl-4"%>
+      <%= f.text_field :first_name_kana, autofocus: true, placeholder: "ミチコ" , autocomplete: "on", class: "col-sm-3" %>
+    </div>
+
+    <div class = "row mb-2">
+      <%= f.label :email ,"メールアドレス", class: "col-sm-3"%>
+      <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com" , autocomplete: "email" , class: "col-sm-3 offset-1" %>
+    </div>
+
+    <div class = "row mb-2">
+      <%= f.label :postal_code ,"郵便番号(ハイフンなし)", class: "col-sm-3"%>
+      <%= f.text_field :postal_code, autofocus: true, placeholder: "0000000" , autocomplete: "postal-code" , class: "col-sm-3 offset-1" %>
+    </div>
+
+    <div class = "row mb-2">
+      <%= f.label :address ,"住所", class: "col-sm-3"%>
+      <%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木神園町0-0" , class: "col-sm-7 offset-1" %>
+    </div>
+
+    <div class = "row mb-2">
+      <%= f.label :telephone_number ,"電話番号(ハイフンなし)", class: "col-sm-3"%>
+      <%= f.text_field :telephone_number, autofocus: true, placeholder: "00000000000" , autocomplete: "tel" , class: "col-sm-3 offset-1" %>
+    </div>
+
+    <div class="row mb-2">
+      <% if @minimum_password_length %>
+        <%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)", class: "col-sm-3"  %>
+      <% end %>
+      <%= f.password_field :password, placeholder: "new-password", class: "col-sm-3 offset-1"  %>
+     </div>
+
+    <div class="row mb-4">
+      <%= f.label :password_confirmation, "パスワード(確認用)", class: "col-sm-3"  %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-sm-3 offset-1"  %>
+    </div>
+
+    <div class="row">
+      <%= f.submit "新規登録", class: "btn btn-success col-sm-2 offset-4" %>
+     </div>
+  <% end %>
+
+   <div class = "row">
+    <!--画面mdサイズ以上で8/12使用　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col offset-md-1">
+       <h4 class = "mb-3"><span class = "bg-light px-2">既に登録済みの方</span></h4>
+    </div>
+  </div>
+
+   <div class = "col offset-md-2">
+      <%= link_to "こちら", new_customer_session_path %>　　からログインしてください。
+
+    </div>
+  </div>
+
+</div>
+
+
+

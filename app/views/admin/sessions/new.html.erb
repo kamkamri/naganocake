@@ -1,0 +1,31 @@
+<!--admin/sign_in-->
+
+<div class = "container-fluid px-5 px-sm-0">
+   <div class = "row offset-1 mb-3">
+    <div class ="col">
+        <h4 class = "mb-3"><span class = "bg-headline px-2">管理者ログイン</span></h2>
+    </div>
+  </div>
+
+  <%= form_with model: @admin, url: admin_session_path do |f| %>
+    <div class="field offset-1 mb-2">
+      <%= f.label :email, 'メールアドレス', class: "col-md-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "col-md-5" %>
+    </div>
+
+    <div class="field offset-1 mb-4">
+      <%= f.label :password, 'パスワード', class: "col-md-2" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "col-md-5" %>
+    </div>
+
+    <div class = "row offset-3">
+      <div class="actions">
+        <%= f.submit "　ログイン　", class: "btn btn-primary btn-lg ml-0" %>
+      </div>
+    </div>
+  <% end %>
+
+
+    <%= render "admin/shared/links" %>
+</div>
+

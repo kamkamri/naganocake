@@ -1,0 +1,62 @@
+<!--<h1>Admin::Customers#show</h1>-->
+
+<div class = "container-fluid px-5 m-5 px-sm-0">
+
+  <div class = "row mb-4 pb-2 offset-1">
+    <div class ="col">
+      <h4><span class = "bg-headline px-2"><%= @customer.name_display %>さんの会員詳細</span></h4>
+    </div>
+  </div>
+
+  <div class = "row offset-1">
+    <div class = "col">
+      <table class = "table table-borderless">
+        <thead>
+          <tr>
+            <th>会員ID</th>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <td><%= @customer.name_display2 %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= @customer.first_name_kana + @customer.last_name_kana %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <th>会員ステータス</th>
+            <!--部分テンプレート：会員ステータス-->
+            <%= render 'layouts/customer_status', customer: @customer %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class = "row offset-1">
+    <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success col-md-1 offset-2 btn-lg" %>
+    <%= form_with url: admin_root_path, method: :get do |f| %>
+      <%= f.hidden_field :id, :value => @customer.id %>
+      <%= f.hidden_field :name_display, :value => @customer.name_display %>
+      <div class = "col-md-2 offset-1"><%= f.submit "　注文履歴一覧を見る　", class: "btn btn-primary btn-lg" %></div>
+    <% end %>
+  </div>
+
+</div>

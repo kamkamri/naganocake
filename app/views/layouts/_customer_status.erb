@@ -1,0 +1,9 @@
+<!--部分テンプレート：会員ステータス-->
+<!--public customer#index customer#show-->
+
+<!--customer.is_active ? '退会':'有効'　という書き方もできる-->
+<% if customer.is_active == true %>
+  <td class = "text-secondary">退会</td>
+<% else %>
+  <td class = "text-success">有効</td>
+<% end %>

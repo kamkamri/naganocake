@@ -1,0 +1,31 @@
+<!--Public::Addresses#edit<-->
+<div class = "container">
+
+  <div class = "row mb-4">
+    <!--画面　mdサイズ以上で、一つ右にずらす-->
+    <div class = "col offset-md-1">
+      <h4 class = "mb-3"><span class = "bg-headline px-2">配送先編集</span></h4>
+    </div>
+  </div>
+
+   <%= form_with model: @address, url: address_path(@address.id), method: :patch do |f| %>
+
+    <div class = "row mb-2">
+      <%= f.label :postal_code ,"郵便番号(ハイフンなし)", class: "col-sm-2 pr-0"%>
+      <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" , placeholder: "0000000" , class: "col-sm-3 offset-1" %>
+    </div>
+
+    <div class = "row mb-2">
+      <%= f.label :address ,"住所", class: "col-sm-2 pr-0"%>
+      <%= f.text_field :address, autofocus: true, autocomplete: "on" , placeholder: "東京都渋谷区代々木神園0-0" , class: "col-sm-7 offset-1" %>
+    </div>
+
+    <div class = "row mb-5">
+      <%= f.label :name ,"宛名", class: "col-sm-2 pr-0"%>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" , placeholder: "令和道子" , class: "col-sm-3 offset-1" %>
+      <%= f.submit "変更内容を保存", class: "btn btn-success col-sm-2 offset-3" %>
+    </div>
+
+  <% end %>
+
+</div>
