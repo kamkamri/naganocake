@@ -10,7 +10,6 @@
   </div>
 
   <%= form_with model: @customer, url: customer_registration_path, method: :post do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
 
     <div class = "row mb-2">
       <%= f.label '名前' , class: "col-sm-3" %>

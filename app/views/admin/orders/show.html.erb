@@ -23,7 +23,10 @@
           </tr>
           <tr>
             <th>配送先</th>
-            <td><%= @order.address_display %></td>
+            <td>
+              <%= @order.address_display %></br>
+              <%= @order.name %>
+            </td>
           </tr>
           <tr>
             <th>支払方法</th>
