@@ -1,7 +1,7 @@
 # ながのCAKE
 長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト。
 
-
+<img width="624" alt="スクリーンショット 2022-08-22 19 17 07" src="https://user-images.githubusercontent.com/108494968/185898311-7e5f8d9b-2e4e-474a-a8f1-8941c85f9414.png">
 
 
 ## 1 機能説明
